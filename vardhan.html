@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capstone E-Commerce Site</title>
+  <style>
+    :root {
+      --primary: U5r7m9sgXNtY7yM1nFFU7Se3r3qcZYlL29ykw2iJsDc5cfgozaYPcSDYk5g34XupkMTi8FudrkX6eIVzR0bXZubZwuCuTlSjEx;
+      --dark: #333333;
+      --light: lightgreen;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+    }
+
+    header {
+      background: var(--dark);
+      color: grey;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: var(--primary);
+      color: white;
+    }
+
+    .products {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-card img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+    }
+
+    .contact {
+      padding: 3rem 1rem;
+      background: #fff;
+    }
+
+    .contact-card {
+      max-width: 500px;
+      margin: auto;
+      background: var(--light);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .contact-card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background: blue;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--dark);
+      color: white;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1>MyShop</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact ">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h2>Welcome to Shopping</h2>
+    <p>Your one-stop solution for mobiles, laptops & more!</p>
+  </section>
+
+  <section id="products" class="products">
+    <h2>Our Products</h2>
+    <div id="product-list" class="product-grid"></div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="contact-card">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MyShop. Built with ❤️</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const products = [
+        { name: "Poco F7", price: "₹26810", rating: 4.8, image: "https://www.gizmochina.com/wp-content/uploads/2024/12/Xiaomi-Poco-F7-500x500.png?x70461"},
+        { name: "HP Laptop", price: "₹12000", rating: 4.6, image: "https://in-media.apjonlinecdn.com/wysiwyg/hp_laptop_15s_new.jpg" },
+        { name: " Branded Shoes", price: "₹14000", rating: 4.7, image: "https://www.jiomart.com/images/product/original/rvincgw8kg/royar-traders-shirt-shirts-men-s-cotton-shirt-men-s-spread-collar-shirt-regular-fit-men-s-shirt-men-s-casual-shirt-men-s-formal-shirt-stylish-men-s-shirt-trendy-men-s-shirt-men-s-shirt-for-office-green-xxl-product-images-rvincgw8kg-0-202408011859.jpg?im=Resize=(1000,1000)" }
+      ];
+
+      const productList = document.getElementById("product-list");
+      products.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <img src="${p.image}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>Price: ${p.price}</p>
+          <p>Rating: ${p.rating} ⭐</p>
+        `;
+        productList.appendChild(card);
+      });
+
+      document.getElementById("contact-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("📨 Thanks for contacting us! We'll get back to you soon.");
+        e.target.reset();
+      });
+    });
+  </script>
+</body>
+</html>
